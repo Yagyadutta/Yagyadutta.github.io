@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yagyadutta Sahu - Data Analyst Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #764ba2;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 80px auto 0;
+            padding: 2rem;
+        }
+
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: #667eea;
+            border-bottom: 3px solid #764ba2;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin-top: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 1rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: #764ba2;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .cgpa {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        .job, .education-item, .skill-category, .project {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .job:last-child, .education-item:last-child, .skill-category:last-child, .project:last-child {
+            border-bottom: none;
+        }
+
+        .job-header, .education-header, .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .date {
+            color: #888;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .company, .university {
+            color: #764ba2;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .project-links {
+            margin: 0.8rem 0;
+        }
+
+        .project-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            margin-right: 0.5rem;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.8rem 0;
+        }
+
+        .tech-badge {
+            background: #f0f0f0;
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        ul.responsibilities, ul.achievements {
+            margin-left: 1.5rem;
+            margin-top: 0.8rem;
+        }
+
+        ul.responsibilities li, ul.achievements li {
+            margin: 0.5rem 0;
+            color: #555;
+        }
+
+        .project-description {
+            color: #555;
+            margin-top: 0.8rem;
+            line-height: 1.7;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #555;
+        }
+
+        .contact-item a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #764ba2;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            margin: 0.5rem;
+            transition: transform 0.3s;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .achievement-badge {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 0.3rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .additional-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .additional-section h4 {
+            color: #667eea;
+            margin-bottom: 0.8rem;
+        }
+
+        .additional-section ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .additional-section li {
+            padding: 0.3rem 0;
+            color: #555;
+        }
+
+        .additional-section li:before {
+            content: "▹ ";
+            color: #764ba2;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                padding: 0.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            .job-header, .education-header, .project-header {
+                flex-direction: column;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="about" class="hero">
+            <h1>Yagyadutta Sahu</h1>
+            <p class="subtitle">Data Analyst | Machine Learning Enthusiast</p>
+            <p style="margin-top: 1.5rem; color: #555;">Gold Medalist B.Tech graduate specializing in Data Analytics with expertise in Python, SQL, Power BI, and Machine Learning. Proven track record of automating data pipelines, building predictive models, and delivering actionable insights through interactive dashboards. Passionate about leveraging data to drive business decisions and solve complex problems.</p>
+            <div style="margin-top: 1.5rem;">
+                <span class="achievement-badge">🏆 Rank 1st in Engineering</span>
+                <span class="achievement-badge">🎓 CGPA: 9.23/10</span>
+                <span class="achievement-badge">⭐ Top 1% Scholar</span>
+            </div>
+            <div style="margin-top: 1.5rem;">
+                <a href="#contact" class="btn">Get In Touch</a>
+                <a href="https://github.com/yagyadutta" class="btn" target="_blank">View GitHub</a>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Professional Experience</h2>
+            
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <h3>Data Analyst Intern (OnSite)</h3>
+                        <p class="company">Engenious, Delhi, India</p>
+                    </div>
+                    <span class="date">Feb 2025 - June 2025</span>
+                </div>
+                <ul class="responsibilities">
+                    <li>Automated data extraction pipeline for 10M+ products using Python and SQL, reducing manual effort by 60%</li>
+                    <li>Performed data cleansing and analysis on large datasets, improving data accuracy by 35%</li>
+                    <li>Implemented validation rules that enhanced data quality and reduced inconsistencies by 40%</li>
+                    <li>Designed and delivered customizable dashboards using Power BI, leveraging creativity and stakeholder communication to provide actionable insights</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <h3>Data Analyst Intern (OnSite)</h3>
+                        <p class="company">MicroTechnology Pvt. Ltd, Bhopal, Madhya Pradesh</p>
+                    </div>
+                    <span class="date">Aug 2024 - Dec 2024</span>
+                </div>
+                <ul class="responsibilities">
+                    <li>Developed RESTful APIs using ORDS to enable seamless data flow between database and frontend applications</li>
+                    <li>Implemented data cleaning and normalization techniques, improving code efficiency by 40%</li>
+                    <li>Designed interactive Power BI dashboards delivering actionable insights to stakeholders</li>
+                    <li>Reduced database transaction errors by 30% through optimized API endpoints and data validation</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <h3>Chegg Expert (Remote)</h3>
+                        <p class="company">Chegg Inc.</p>
+                    </div>
+                    <span class="date">Aug 2021 - Mar 2024</span>
+                </div>
+                <ul class="responsibilities">
+                    <li>Q&A Expert in Chemistry and Physics for JEE/NEET students</li>
+                    <li>Provided detailed explanations and solutions to complex problems, helping students understand fundamental concepts</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            
+            <div class="project">
+                <div class="project-header">
+                    <h3>Customer Categorizer - ML-Powered Segmentation System</h3>
+                    <span class="date">Mar 2025 - Apr 2025</span>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">FastAPI</span>
+                    <span class="tech-badge">MongoDB</span>
+                    <span class="tech-badge">Docker</span>
+                    <span class="tech-badge">Machine Learning</span>
+                    <span class="tech-badge">AWS</span>
+                    <span class="tech-badge">Azure</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Yagyadutta/ML_Project_Customer_Categorizer" class="project-link" target="_blank">📂 GitHub Repo</a>
+                </div>
+                <div class="project-description">
+                    <p><strong>Overview:</strong> Developed a highly scalable customer segmentation platform designed to handle massive datasets and provide real-time predictive analytics for marketing teams.</p>
+                    <p style="margin-top: 0.8rem;"><strong>Key Features & Achievements:</strong></p>
+                    <ul class="achievements">
+                        <li><strong>Scalable Backend Architecture:</strong> Built using FastAPI framework with MongoDB Atlas for cloud-native data storage, capable of processing 1M+ customer records efficiently</li>
+                        <li><strong>Containerization & Deployment:</strong> Dockerized the entire application for consistent deployment across AWS EC2 and Azure cloud platforms, ensuring high availability and easy scalability</li>
+                        <li><strong>Machine Learning Implementation:</strong> Implemented K-Means clustering algorithm for unsupervised customer segmentation and Logistic Regression for predictive classification</li>
+                        <li><strong>Performance Impact:</strong> Achieved 22% improvement in targeting accuracy through behavior-based clustering, enabling more personalized marketing campaigns</li>
+                        <li><strong>Real-Time API:</strong> Developed RESTful API endpoints for real-time customer categorization, allowing instant predictions for new customer data</li>
+                    </ul>
+                    <p style="margin-top: 0.8rem;"><strong>Technical Highlights:</strong> Utilized scikit-learn for ML models, implemented data preprocessing pipelines, and optimized API response times to under 200ms for production-ready performance.</p>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <h3>Stock Price Predictor - Time Series Analysis Tool</h3>
+                    <span class="date">Feb 2025</span>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Pandas</span>
+                    <span class="tech-badge">Matplotlib</span>
+                    <span class="tech-badge">Scikit-Learn</span>
+                    <span class="tech-badge">EDA</span>
+                    <span class="tech-badge">Jupyter</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Yagyadutta/stock_price_predictor" class="project-link" target="_blank">📂 GitHub Repo</a>
+                </div>
+                    <p style="margin-top: 0.8rem;"><strong>Key Features & Achievements:</strong></p>
+                    <ul class="achievements">
+                        <li><strong>Advanced Regression Models:</strong> Implemented both Linear Regression and Polynomial Regression models to capture linear and non-linear market trends</li>
+                        <li><strong>Improved Accuracy:</strong> Achieved 15% improvement in prediction accuracy through careful feature engineering and model tuning</li>
+                        <li><strong>Comprehensive EDA:</strong> Performed extensive Exploratory Data Analysis on historical stock data, identifying key patterns and correlations in price movements</li>
+                        <li><strong>Data Preprocessing:</strong> Cleaned and normalized time-series data, handled missing values, and engineered features like moving averages and volatility indicators</li>
+                        <li><strong>Error Reduction:</strong> Optimized feature selection process, reducing prediction error (RMSE) by 20% compared to baseline models</li>
+                        <li><strong>Visualization Dashboard:</strong> Created interactive Matplotlib visualizations showing historical trends, predictions, and confidence intervals for better investment insights</li>
+                    </ul>
+                    <p style="margin-top: 0.8rem;"><strong>Business Impact:</strong> Provided actionable investment strategies through data-driven predictions, helping identify optimal buy/sell points based on historical patterns and trend analysis.</p>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <h3>Client Sales Dashboard - Business Intelligence Solution</h3>
+                    <span class="date">Aug 2024 - Sept 2024</span>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-badge">Power BI</span>
+                    <span class="tech-badge">Excel</span>
+                    <span class="tech-badge">DAX</span>
+                    <span class="tech-badge">SQL</span>
+                    <span class="tech-badge">MySQL</span>
+                    <span class="tech-badge">PowerPoint</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Yagyadutta/Power-bi-sales-dashborad" class="project-link" target="_blank">📂 GitHub Repo</a>
+                </div>
+                <div class="project-description">
+                    <p><strong>Overview:</strong> Developed a comprehensive business intelligence dashboard for sales analytics, integrating multiple data sources to provide real-time insights.</p>
+                    <p style="margin-top: 0.8rem;"><strong>Key Features & Achievements:</strong></p>
+                    <ul class="achievements">
+                        <li><strong>Data Integration:</strong> Successfully integrated sales data from MySQL databases and CSV files into Power BI, creating a unified data model</li>
+                        <li><strong>ETL Optimization:</strong> Implemented efficient data transformation processes in Power Query, boosting processing efficiency by 25%</li>
+                        <li><strong>Advanced DAX Measures:</strong> Designed complex DAX formulas for custom aggregations, YoY comparisons, and time-based analysis (monthly, quarterly trends)</li>
+                        <li><strong>Performance Improvement:</strong> Optimized dashboard performance through proper data modeling and relationships, improving dashboard efficiency by 30%</li>
+                        <li><strong>Interactive Visualizations:</strong> Created dynamic, drill-down enabled charts and graphs allowing stakeholders to explore data at multiple levels</li>
+                        <li><strong>Time Efficiency:</strong> Reduced manual report generation time by 25% through automated dashboards and scheduled data refreshes</li>
+                        <li><strong>Business Metrics:</strong> Tracked key KPIs including revenue trends, top-performing products, regional sales distribution, and customer acquisition metrics</li>
+                    </ul>
+                    <p style="margin-top: 0.8rem;"><strong>Business Impact:</strong> Enhanced decision-making capabilities for sales teams and management through real-time visibility into sales performance and trends, enabling proactive strategy adjustments.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            
+            <div class="skill-category">
+                <h3>Programming Languages & Tools</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">C++</div>
+                    <div class="skill-item">Java</div>
+                    <div class="skill-item">DSA</div>
+                    <div class="skill-item">Git & GitHub</div>
+                    <div class="skill-item">AWS EC2</div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Data Analysis & Business Intelligence</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">EDA</div>
+                    <div class="skill-item">Statistics</div>
+                    <div class="skill-item">Advanced Excel</div>
+                    <div class="skill-item">Power BI</div>
+                    <div class="skill-item">Tableau</div>
+                    <div class="skill-item">MySQL</div>
+                    <div class="skill-item">Machine Learning</div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Frameworks & Libraries</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">Pandas</div>
+                    <div class="skill-item">NumPy</div>
+                    <div class="skill-item">Scikit-Learn</div>
+                    <div class="skill-item">Matplotlib</div>
+                    <div class="skill-item">Seaborn</div>
+                    <div class="skill-item">Flask</div>
+                    <div class="skill-item">REST API</div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Development Platforms</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">PyCharm</div>
+                    <div class="skill-item">VS Code</div>
+                    <div class="skill-item">Jupyter Notebook</div>
+                    <div class="skill-item">Google Colab</div>
+                    <div class="skill-item">IntelliJ IDEA</div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Soft Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">Rapport Building</div>
+                    <div class="skill-item">Stakeholder Management</div>
+                    <div class="skill-item">People Management</div>
+                    <div class="skill-item">Communication</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            
+            <div class="education-item">
+                <div class="education-header">
+                    <div>
+                        <h3>B.Tech in Electronics and Communication Engineering</h3>
+                        <p class="university">G.K.V., Faculty of Engineering and Technology (IIIT), Haridwar</p>
+                    </div>
+                    <span class="date">Aug 2020 – May 2024</span>
+                </div>
+                <p><span class="cgpa">CGPA: 9.23/10</span></p>
+                
+                <div style="margin-top: 1.5rem;">
+                    <h4 style="color: #667eea; margin-bottom: 0.8rem;">Academic Achievements</h4>
+                    <ul class="achievements">
+                        <li>Ranked 1st in the engineering course (B.Tech) out of 101 students</li>
+                        <li>Merit-cum-Means & IBGAA Scholarship holder (Top 1%)</li>
+                        <li>Honored by Minister of Home Affairs and Dean of college for topping and being gold medalist for consecutive 4 years</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="additional">
+            <h2>Additional Information</h2>
+            
+            <div class="additional-section">
+                <h4>🏆 Competitive Programming</h4>
+                <ul>
+                    <li>Solved 100+ problems on LeetCode</li>
+                    <li>200+ score on GeeksforGeeks (GFG)</li>
+                    <li>3-star Problem Solver on HackerRank</li>
+                </ul>
+            </div>
+
+            <div class="additional-section">
+                <h4>🎮 Extracurricular Activities</h4>
+                <ul>
+                    <li>Member of FET's E-Sports Society</li>
+                    <li>Co-ordinated JNANAGNI's BGMI Tournament</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Let's Connect</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>📧 Email:</strong> <a href="mailto:yagyasahu053@gmail.com">yagyasahu053@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <strong>📱 Phone:</strong> +91 9285297068
+                </div>
+                <div class="contact-item">
+                    <strong>💼 LinkedIn:</strong> <a href="https://www.linkedin.com/in/yagyadutta-sahu" target="_blank">linkedin.com/in/yagyadutta-sahu</a>
+                </div>
+                <div class="contact-item">
+                    <strong>💻 GitHub:</strong> <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="mailto:yagyasahu053@gmail.com" class="btn">Send me an Email</a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
